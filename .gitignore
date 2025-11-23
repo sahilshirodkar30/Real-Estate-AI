@@ -2,10 +2,11 @@
 __pycache__/
 *.py[codz]
 *$py.class
-
+.env
 # C extensions
 *.so
-
+.idea/
+resources/vectorstore/
 # Distribution / packaging
 .Python
 build/
