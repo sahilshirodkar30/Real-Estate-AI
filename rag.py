@@ -12,11 +12,11 @@ from langchain.chains.combine_documents import create_stuff_documents_chain
 from langchain.chains import create_retrieval_chain
 import warnings
 warnings.filterwarnings("ignore")
-
+import os
 
 
 load_dotenv()
-
+GROQ_KEY = os.getenv("GROQ_API_KEY")
 CHUNK_SIZE = 1000
 EMBEDDING_MODEL = "distilbert-base-nli-mean-tokens"
 VECTORSTORE_DIR = Path(__file__).parent / "resources/vectorstore"
@@ -29,7 +29,7 @@ def initialize_components():
     global llm, vector_store
 
     if llm is None:
-        llm = ChatGroq(model="llama-3.3-70b-versatile", temperature=0.9, max_tokens=500)
+        llm = ChatGroq(api_key=GROQ_KEY,model="llama-3.3-70b-versatile", temperature=0.9, max_tokens=500)
 
     if vector_store is None:
         ef = HuggingFaceEmbeddings(
