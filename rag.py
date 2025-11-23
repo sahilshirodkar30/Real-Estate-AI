@@ -18,7 +18,7 @@ warnings.filterwarnings("ignore")
 load_dotenv()
 
 CHUNK_SIZE = 1000
-EMBEDDING_MODEL = "distilbert-base-nli-mean-tokens"
+EMBEDDING_MODEL = "sentence-transformers/all-MiniLM-L6-v2"
 VECTORSTORE_DIR = Path(__file__).parent / "resources/vectorstore"
 COLLECTION_NAME = "real_estate"
 
