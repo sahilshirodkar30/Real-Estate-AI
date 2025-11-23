@@ -12,11 +12,11 @@ from langchain.chains.combine_documents import create_stuff_documents_chain
 from langchain.chains import create_retrieval_chain
 import warnings
 warnings.filterwarnings("ignore")
-import os
+
 
 
 load_dotenv()
-GROQ_API_KEY = os.getenv("GROQ_API_KEY")
+
 CHUNK_SIZE = 1000
 EMBEDDING_MODEL = "distilbert-base-nli-mean-tokens"
 VECTORSTORE_DIR = Path(__file__).parent / "resources/vectorstore"
