@@ -14,6 +14,7 @@ import warnings
 warnings.filterwarnings("ignore")
 import streamlit as st
 import os
+from langchain_community.embeddings.fastembed import FastEmbedEmbeddings
 
 load_dotenv()
 def get_groq_api_key():
@@ -42,16 +43,36 @@ COLLECTION_NAME = "real_estate"
 llm = None
 vector_store = None
 
+#def initialize_components():
+   # global llm, vector_store
+
+    #if llm is None:
+       # llm = ChatGroq(model="llama-3.3-70b-versatile", temperature=0.9, max_tokens=500,groq_api_key=GROQ_API_KEY)
+
+    #if vector_store is None:
+      #  ef = HuggingFaceEmbeddings(
+            model_name=EMBEDDING_MODEL
+      #  )
+
+      #  vector_store = Chroma(
+        #    collection_name=COLLECTION_NAME,
+         #   embedding_function=ef,
+         #   persist_directory=str(VECTORSTORE_DIR)
+       # )
+
 def initialize_components():
     global llm, vector_store
 
     if llm is None:
-        llm = ChatGroq(model="llama-3.3-70b-versatile", temperature=0.9, max_tokens=500,groq_api_key=GROQ_API_KEY)
+        llm = ChatGroq(
+            model="llama-3.3-70b-versatile",
+            temperature=0.9,
+            max_tokens=500,
+            groq_api_key=GROQ_API_KEY
+        )
 
     if vector_store is None:
-        ef = HuggingFaceEmbeddings(
-            model_name=EMBEDDING_MODEL
-        )
+        ef = FastEmbedEmbeddings()
 
         vector_store = Chroma(
             collection_name=COLLECTION_NAME,
@@ -147,4 +168,5 @@ if __name__ == "__main__":
     query = "Give me a brief one paragraph summary of each article link uploaded."
     answer,sources = generate_answer(query)
     print(f"\nSources: {sources}")
+
 
