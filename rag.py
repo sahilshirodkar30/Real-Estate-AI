@@ -51,7 +51,7 @@ vector_store = None
 
     #if vector_store is None:
       #  ef = HuggingFaceEmbeddings(
-            model_name=EMBEDDING_MODEL
+            #model_name=EMBEDDING_MODEL
       #  )
 
       #  vector_store = Chroma(
@@ -168,5 +168,6 @@ if __name__ == "__main__":
     query = "Give me a brief one paragraph summary of each article link uploaded."
     answer,sources = generate_answer(query)
     print(f"\nSources: {sources}")
+
 
 
