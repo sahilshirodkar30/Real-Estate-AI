@@ -35,7 +35,7 @@ def get_groq_api_key():
 
 GROQ_API_KEY = get_groq_api_key()
 CHUNK_SIZE = 1000
-EMBEDDING_MODEL = "distilbert-base-nli-mean-tokens"
+EMBEDDING_MODEL = "sentence-transformers/all-MiniLM-L6-v2"
 VECTORSTORE_DIR = Path(__file__).parent / "resources/vectorstore"
 COLLECTION_NAME = "real_estate"
 
@@ -50,8 +50,7 @@ def initialize_components():
 
     if vector_store is None:
         ef = HuggingFaceEmbeddings(
-            model_name=EMBEDDING_MODEL,
-            model_kwargs={"trust_remote_code": True}
+            model_name=EMBEDDING_MODEL
         )
 
         vector_store = Chroma(
@@ -148,3 +147,4 @@ if __name__ == "__main__":
     query = "Give me a brief one paragraph summary of each article link uploaded."
     answer,sources = generate_answer(query)
     print(f"\nSources: {sources}")
+
