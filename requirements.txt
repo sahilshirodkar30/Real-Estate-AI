@@ -11,3 +11,5 @@ langchain==0.3.27
 langchain-core==0.3.76
 langchain-ollama==0.3.8
 langchain-text-splitters==0.3.11
+sentence-transformers
+fastembed
